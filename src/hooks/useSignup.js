@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { projectAuth, projectStorage } from '../firebase/config'
+import { projectAuth, projectStorage, projectFirestore } from '../firebase/config'
 
 
 export const useSignup = () => {
@@ -28,6 +28,12 @@ export const useSignup = () => {
       // add display name to user
       await res.user.updateProfile({ displayName, photoURL:imgUrl })
 
+      // create a user document
+      await projectFirestore.collection('users').doc(res.user.uid).set({
+        online: true,
+        displayName,
+        photoURL: imgUrl
+      })
 
       if (!isCancelled) {
         setIsPending(false)
