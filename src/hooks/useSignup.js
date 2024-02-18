@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
 import { projectAuth, projectStorage, projectFirestore } from '../firebase/config'
+import { useAuthContext } from './useAuthContext'
 
 
 export const useSignup = () => {
   const [isCancelled, setIsCancelled] = useState(false)
   const [error, setError] = useState(null)
   const [isPending, setIsPending] = useState(false)
+  const { dispatch } = useAuthContext()
 
 
   const signup = async (email, password, displayName, thumbnail) => {
@@ -27,6 +29,7 @@ export const useSignup = () => {
 
       // add display name to user
       await res.user.updateProfile({ displayName, photoURL:imgUrl })
+
 
       // create a user document
       await projectFirestore.collection('users').doc(res.user.uid).set({
