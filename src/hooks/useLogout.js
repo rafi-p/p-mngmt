@@ -20,6 +20,9 @@ export const useLogout = () => {
 
       await projectAuth.signOut()
 
+      // dispatch logout action
+      dispatch({ type: 'LOGOUT' })
+
       // update state
       if (!isCancelled) {
         setIsPending(false)

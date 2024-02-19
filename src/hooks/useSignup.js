@@ -30,6 +30,8 @@ export const useSignup = () => {
       // add display name to user
       await res.user.updateProfile({ displayName, photoURL:imgUrl })
 
+      // dispatch login action
+      dispatch({ type: 'LOGIN', payload: res.user })
 
       // create a user document
       await projectFirestore.collection('users').doc(res.user.uid).set({
