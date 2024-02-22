@@ -40,7 +40,7 @@ function App() {
                   : <Redirect to='/login' />
                 }
               </Route>
-              <Route path="/projects:id">
+              <Route path="/projects/:id">
                 {
                   user
                   ? <Project />
