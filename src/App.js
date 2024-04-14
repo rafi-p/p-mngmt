@@ -1,5 +1,7 @@
+import {useState} from 'react'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { useAuthContext } from './hooks/useAuthContext'
+import useWindowSize from './hooks/useWindowSize'
 
 // styles
 import './App.css'
@@ -15,16 +17,24 @@ import Sidebar from './components/Sidebar'
 import OnlineUsers from './components/OnlineUsers'
 
 function App() {
+  const [hamburgerOpen, setHamburgerOpen] = useState(false)
   const { user, authIsReady } = useAuthContext()
+  const { width } = useWindowSize()
+
+  const toggleHamburger = () => {
+    setHamburgerOpen(!hamburgerOpen)
+  }
 
   return (
     <div className="App">
       {
         authIsReady &&
         <BrowserRouter>
-          {user && <Sidebar/>}
+          {
+            user && <Sidebar hamburgerOpen={hamburgerOpen} setHamburgerOpen={setHamburgerOpen}/>
+          }
           <div className='container'>
-            <Navbar />
+            <Navbar  toggleHamburger={toggleHamburger}/>
             <Switch>
               <Route exact path="/">
                 {
@@ -63,7 +73,11 @@ function App() {
               </Route>
             </Switch>
           </div>
-          {user && <OnlineUsers/>}
+          {
+            user && width > 600  
+            ? <OnlineUsers/> 
+            : null
+          }
         </BrowserRouter>
       }
     </div>

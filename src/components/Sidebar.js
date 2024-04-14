@@ -1,17 +1,20 @@
 import { NavLink } from "react-router-dom"
 import Avatar from "./Avatar"
 import { useAuthContext } from "../hooks/useAuthContext"
+import useOutsideAlerter from "../hooks/useOutsideAlerter"
+import useWindowSize from "../hooks/useWindowSize"
 
 // styles & images
 import "./Sidebar.css"
 import DashboardIcon from "../assets/dashboard_icon.svg"
 import AddIcon from "../assets/add_icon.svg"
 
-export default function Sidebar() {
+export default function Sidebar({ hamburgerOpen, setHamburgerOpen }) {
     const { user } = useAuthContext()
-
+    const { ref } = useOutsideAlerter(setHamburgerOpen);
+    const { width } = useWindowSize()
     return (
-        <div className="sidebar">
+        <div ref={ref} className={`sidebar hamburger`} style={width <= 600 ? {display: hamburgerOpen ? 'inline' : 'none'} : null}>
             <div className="sidebar-content">   
                 <div className="user">
                     <Avatar src={user?.photoURL} />

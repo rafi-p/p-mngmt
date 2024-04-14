@@ -1,19 +1,29 @@
 import { Link } from "react-router-dom"
 import { useLogout } from "../hooks/useLogout"
 import { useAuthContext } from '../hooks/useAuthContext'
+import useWindowSize from "../hooks/useWindowSize"
 
 // styles & images
 import "./Navbar.css"
 import Temple from '../assets/temple.svg'
+import BurgerMenu from '../assets/burger_icon.svg'
 
 
-export default function Navbar () {
+export default function Navbar ({toggleHamburger}) {
     const { logout, isPending } = useLogout()
     const { user } = useAuthContext()
+    const { width } = useWindowSize()
+    
 
     return (
         <div className="navbar">
             <ul>
+                {
+                    width <= 600 &&
+                    <li className="logo" onClick={() => toggleHamburger()}>
+                        <img src={BurgerMenu} alt="burger icon" />
+                    </li>
+                }
                 <li className="logo">
                     <img src={Temple} alt="pm logo"/>
                     <span>The Pm</span>

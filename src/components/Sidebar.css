@@ -45,3 +45,11 @@ padding: 40px 30px;
 .sidebar .links .active img {
     filter: invert(40%);
 }
+
+
+@media (max-width: 600px) {
+    .hamburger {
+        position: fixed;
+        z-index: 10;
+    }
+}
