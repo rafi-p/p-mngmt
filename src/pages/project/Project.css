@@ -78,3 +78,10 @@
     color: var(--text-color);
     font-size: 0.9em;
 }
+
+@media (max-width: 600px) {
+    .project-details {   
+        grid-template-columns: auto;
+
+    }
+}
