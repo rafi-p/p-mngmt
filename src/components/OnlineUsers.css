@@ -36,3 +36,26 @@
     border-radius: 50%;
     margin-top: 2px;
 }
+
+@media (max-width: 600px) {
+    .user-list {
+        min-width: auto;
+        width: auto;
+        margin: 20px;
+        border-radius: 10px;
+    }
+    .user-list .user-list-item {
+        justify-content: flex-start;
+    }
+    .user-list h2 {
+        text-align: left;
+    }
+    .user-list .avatar {
+        margin-right: 10px;
+        margin-left: 0px;
+    }
+    .user-list .online-user {
+        margin-left: 10px;
+        margin-right: 0px;
+    }
+}

@@ -8,7 +8,10 @@ import './Dashboard.css'
 
 export default function Dashboard () {
     const { user } = useAuthContext()
-    const [currentFilter, setCurrentFilter] = useState('all')
+    const [currentFilter, setCurrentFilter] = useState({
+        value: 'all',
+        label: 'all'
+    })
     const { documents, error  } = useCollection('projects')
 
     const changeFilter = (newFilter) => {
@@ -16,7 +19,7 @@ export default function Dashboard () {
     }
 
     const projects = documents ? documents.filter((document) => {
-        switch (currentFilter) {
+        switch (currentFilter.value) {
             case 'all':
                 return true
             case 'mine':

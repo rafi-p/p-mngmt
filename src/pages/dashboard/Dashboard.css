@@ -27,3 +27,14 @@
 .project-filter button.active {
     color: var(--primary-color);
 } 
+
+@media (max-width: 600px) {
+    .project-filter nav {
+        align-items: center;
+        display: grid;
+        grid-template-columns: 30% auto;
+    }
+    .project-filter p {
+        white-space: nowrap;
+    }
+}

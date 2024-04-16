@@ -8,6 +8,7 @@ import useWindowSize from "../hooks/useWindowSize"
 import "./Sidebar.css"
 import DashboardIcon from "../assets/dashboard_icon.svg"
 import AddIcon from "../assets/add_icon.svg"
+import OnlineUsers from "./OnlineUsers"
 
 export default function Sidebar({ hamburgerOpen, setHamburgerOpen }) {
     const { user } = useAuthContext()
@@ -41,6 +42,7 @@ export default function Sidebar({ hamburgerOpen, setHamburgerOpen }) {
                         </li>
                     </ul>
                 </nav>
+                <OnlineUsers />
             </div>
         </div>
     )

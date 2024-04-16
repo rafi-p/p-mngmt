@@ -19,7 +19,7 @@ export default function Navbar ({toggleHamburger}) {
         <div className="navbar">
             <ul>
                 {
-                    width <= 600 &&
+                    width <= 600  && user &&
                     <li className="logo" onClick={() => toggleHamburger()}>
                         <img src={BurgerMenu} alt="burger icon" />
                     </li>
