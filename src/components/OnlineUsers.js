@@ -4,6 +4,7 @@ import useWindowSize from '../hooks/useWindowSize'
 
 // styles
 import './OnlineUsers.css'
+import { Fragment } from 'react'
 
 
 export default function OnlineUsers () {
@@ -18,35 +19,38 @@ export default function OnlineUsers () {
                     {error}
                 </div>
             }
-            {
-                documents && documents.map(user => 
-                    {
-                        return width > 600 
-                        ? (
-                            <div key={user.id} className='user-list-item'>
-                                {user.online && 
-                                    <span className="online-user"></span>
-                                }
-                                <span>
-                                    {user.displayName}
-                                </span>
-                                <Avatar src={user.photoURL}/>
-                            </div>
-                        )
-                        : (
-                            <div key={user.id} className='user-list-item'>
-                                <Avatar src={user.photoURL}/>
-                                <span>
-                                    {user.displayName}
-                                </span>
-                                {user.online && 
-                                    <span className="online-user"></span>
-                                }
-                            </div>
-                        )
-                    }
-                )
-            }
+            <div className='user-list-wrapper'>
+                {
+                    documents && documents.map(user => 
+                        {
+                            return width > 600 
+                            ? (
+                                <div key={user.id} className='user-list-item'>
+                                    {user.online && 
+                                        <span className="online-user"></span>
+                                    }
+                                    <span>
+                                        {user.displayName}
+                                    </span>
+                                    <Avatar src={user.photoURL}/>
+                                </div>
+                            )
+                            : (
+                                <div key={user.id} className='user-list-item'>
+                                    <Avatar src={user.photoURL}/>
+                                    <span>
+                                        {user.displayName}
+                                    </span>
+                                    {user.online && 
+                                        <span className="online-user"></span>
+                                    }
+                                </div>
+                            )
+                        }
+                    )
+                }
+
+            </div>
         </div>
     )
 }

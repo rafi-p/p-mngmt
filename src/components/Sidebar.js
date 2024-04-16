@@ -42,7 +42,7 @@ export default function Sidebar({ hamburgerOpen, setHamburgerOpen }) {
                         </li>
                     </ul>
                 </nav>
-                <OnlineUsers />
+                { width <= 600 && <OnlineUsers />}
             </div>
         </div>
     )
