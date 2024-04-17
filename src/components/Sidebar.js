@@ -15,7 +15,7 @@ export default function Sidebar({ hamburgerOpen, setHamburgerOpen }) {
     const { ref } = useOutsideAlerter(setHamburgerOpen);
     const { width } = useWindowSize()
     return (
-        <div ref={ref} className={`sidebar hamburger`} style={width <= 600 ? {display: hamburgerOpen ? 'inline' : 'none'} : null}>
+        <div ref={ref} className={`sidebar hamburger ${hamburgerOpen ? 'open' : ''}`} style={width <= 600 ? {display: hamburgerOpen ? 'inline' : 'none'} : null}>
             <div className="sidebar-content">   
                 <div className="user">
                     <Avatar src={user?.photoURL} />

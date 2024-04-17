@@ -23,6 +23,11 @@ function App() {
 
   const toggleHamburger = () => {
     setHamburgerOpen(!hamburgerOpen)
+
+
+    if(!hamburgerOpen) {
+      document.body.style.overflow = "hidden"
+    } 
   }
 
   return (
@@ -33,6 +38,7 @@ function App() {
           {
             user && <Sidebar hamburgerOpen={hamburgerOpen} setHamburgerOpen={setHamburgerOpen}/>
           }
+        { hamburgerOpen && <div className="overlay"></div>}
           <div className='container'>
             <Navbar  toggleHamburger={toggleHamburger}/>
             <Switch>

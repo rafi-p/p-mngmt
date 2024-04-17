@@ -51,5 +51,9 @@ padding: 40px 30px;
     .hamburger {
         position: fixed;
         z-index: 10;
+        box-shadow:0 0 0 10000px rgba(0,0,0,.50);
+    }
+    body .open {
+        overflow: hidden;
     }
 }

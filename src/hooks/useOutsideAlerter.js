@@ -6,6 +6,7 @@ function useOutsideAlerter(callback) {
     const handleClickOutside = (event) => {
         if (ref.current && !ref.current.contains(event.target)) {
             callback(false);
+            document.body.style.overflow = ""
         }
     };
 

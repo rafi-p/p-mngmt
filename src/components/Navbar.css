@@ -29,3 +29,13 @@
     text-decoration: none;
     margin-right: 20px;
 }
+
+@media (max-width: 600px) {
+    .navbar {
+        position: sticky;
+        top: 0;
+        background: var(--bg-color);
+        z-index: 2;
+    }
+}
+
