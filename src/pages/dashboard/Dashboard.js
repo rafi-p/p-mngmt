@@ -2,11 +2,14 @@ import { useCollection } from '../../hooks/useCollection'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import ProjectList from '../../components/ProjectList'
 import ProjectFilter from './ProjectFilter'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import {useLocation} from 'react-router-dom'
+import anime from 'animejs'
 // styles
 import './Dashboard.css'
 
 export default function Dashboard () {
+    const {pathname} = useLocation()
     const { user } = useAuthContext()
     const [currentFilter, setCurrentFilter] = useState({
         value: 'all',
@@ -34,15 +37,25 @@ export default function Dashboard () {
             case 'design':
             case 'sales':
             case 'marketing':
-                return document.category === currentFilter
+                return document.category === currentFilter.value
             default:
                 return true
         }
     }) : null
 
+    // useEffect(() => {
+    //     if(pathname === '/') {
+    //         anime({
+    //             targets: ['#dashboard-title', '.project-filter', '.project-list'],
+    //             opacity: 1,
+    //             delay: anime.stagger(100) ,
+    //         });
+    //     }
+    // },[pathname])
+
     return (
         <div>
-            <h2 className="page-title">Dashboard</h2>
+            <h2 id='dashboard-title' className="page-title">Dashboard</h2>
             {error && <p className='error'>{error}</p>}
             {
                 documents && <ProjectFilter currentFilter={currentFilter} changeFilter={changeFilter}/> 

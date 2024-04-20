@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { useAuthContext } from './hooks/useAuthContext'
 import useWindowSize from './hooks/useWindowSize'
+import anime from 'animejs'
 
 // styles
 import './App.css'
@@ -29,6 +30,7 @@ function App() {
       document.body.style.overflow = "hidden"
     } 
   }
+
 
   return (
     <div className="App">

@@ -1,5 +1,6 @@
 .project-filter {
     margin: 30px auto;
+    /* opacity: 0; */
 }
 .project-filter nav {
     display: flex;
@@ -27,6 +28,11 @@
 .project-filter button.active {
     color: var(--primary-color);
 } 
+
+#dashboard-title  {
+    /* opacity: 0; */
+}
+
 
 @media (max-width: 600px) {
     .project-filter nav {

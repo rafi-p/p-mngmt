@@ -3,6 +3,8 @@ import Avatar from "./Avatar"
 import { useAuthContext } from "../hooks/useAuthContext"
 import useOutsideAlerter from "../hooks/useOutsideAlerter"
 import useWindowSize from "../hooks/useWindowSize"
+import anime from "animejs"
+
 
 // styles & images
 import "./Sidebar.css"
@@ -21,8 +23,41 @@ export default function Sidebar({ hamburgerOpen, setHamburgerOpen }) {
         if(hamburgerOpen) setHamburgerOpen(false)
     }, [pathname])
 
+    useEffect(() => {
+        if(width <= 600 ) {
+            if(hamburgerOpen) {
+                anime({
+                    targets: '.hamburger',        
+                    translateX: 300,
+                    duration: 250,
+                    easing: 'easeInOutQuad',
+                })
+            } 
+            else {
+                anime({
+                    targets: '.hamburger',        
+                    translateX: -300,      
+                    duration: 250,
+                    easing: 'easeInOutQuad',
+                    
+                })
+            }
+        }
+    },[hamburgerOpen])
+
+
     return (
-        <div ref={ref} className={`sidebar hamburger ${hamburgerOpen ? 'open' : ''}`} style={width <= 600 ? {display: hamburgerOpen ? 'inline' : 'none'} : null}>
+        <div 
+            ref={ref} 
+            className={`sidebar hamburger ${hamburgerOpen ? 'open' : ''}`} 
+            style={
+                width <= 600 
+                    ? {
+                        display: hamburgerOpen ? 'inline' : ''
+                    } 
+                    : null
+            }
+        >
             <div className="sidebar-content">   
                 <div className="user">
                     <Avatar src={user?.photoURL} />
@@ -34,6 +69,7 @@ export default function Sidebar({ hamburgerOpen, setHamburgerOpen }) {
                             <NavLink 
                                 exact
                                 to="/"
+            
                             >
                                 <img src={DashboardIcon} alt="dashboard icon" />
                                 <span>Dashboard</span>

@@ -4,7 +4,8 @@ import { useCollection } from '../../hooks/useCollection'
 import { timestamp } from '../../firebase/config'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { useFirestore } from '../../hooks/useFirestore'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
+import anime from 'animejs'
 
 // styles
 import './Create.css'
@@ -18,6 +19,7 @@ const categories = [
 
 export default function Create () {
     const history = useHistory()
+    const {pathname} = useLocation()
     const {addDocument, response} = useFirestore('projects')
     const { documents } = useCollection('users')
     const [ users, setUsers ] = useState([])
@@ -42,6 +44,17 @@ export default function Create () {
             setUsers(options)
         }
     },[documents])
+
+
+    useEffect(() => {
+        if(pathname === '/create') {
+            anime({
+                targets: ['#create-new-project', '.transition-form-create label', '#add-project'],
+                opacity: 1,
+                delay: anime.stagger(100) ,
+            });
+        }
+    },[pathname])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -87,8 +100,8 @@ export default function Create () {
     
     return (
         <div className='create-form'>
-            <h2 className="page-title">Create a new project</h2>
-            <form onSubmit={handleSubmit}>
+            <h2 id='create-new-project' className="page-title">Create a new project</h2>
+            <form className='transition-form-create' onSubmit={handleSubmit}>
                 <label>
                     <span>Project name:</span>
                     <input 
@@ -133,7 +146,7 @@ export default function Create () {
                     />
                 </label>
 
-                <button className="btn">Add project</button>
+                <button id='add-project' className="btn">Add project</button>
                 {formError && <p className='error'>{formError}</p>}
             </form>
         </div>
