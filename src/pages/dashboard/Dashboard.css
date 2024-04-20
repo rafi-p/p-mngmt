@@ -1,6 +1,6 @@
 .project-filter {
     margin: 30px auto;
-    /* opacity: 0; */
+    opacity: 0;
 }
 .project-filter nav {
     display: flex;
@@ -30,7 +30,7 @@
 } 
 
 #dashboard-title  {
-    /* opacity: 0; */
+    opacity: 0;
 }
 
 

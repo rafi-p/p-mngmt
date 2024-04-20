@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { useLogout } from "../hooks/useLogout"
 import { useAuthContext } from '../hooks/useAuthContext'
 import useWindowSize from "../hooks/useWindowSize"
@@ -10,6 +10,7 @@ import BurgerMenu from '../assets/burger_icon.svg'
 
 
 export default function Navbar ({toggleHamburger}) {
+    const {pathname} = useLocation()
     const { logout, isPending } = useLogout()
     const { user } = useAuthContext()
     const { width } = useWindowSize()
@@ -30,20 +31,21 @@ export default function Navbar ({toggleHamburger}) {
                 </li>
                 {
                     !user
-                    ? (
-                        <>
+                    ? pathname !== '/login' 
+                        ? (
                             <li>
                                 <Link to="/login">
                                     Login
                                 </Link>
                             </li>
+                        )
+                        : (
                             <li>
                                 <Link to="/signup">
                                     Signup
                                 </Link>
                             </li>
-                        </>
-                    )
+                        )
                     : (
                         <li>
                             {

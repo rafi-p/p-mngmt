@@ -10,6 +10,7 @@
     background-color: #fff;
     padding: 30px;
     border-radius: 4px;
+    opacity: 0;
 }
 .project-summary .due-date {
     margin: 10px 0;
@@ -50,6 +51,7 @@
 /* comment list */
 .project-comments h4 {
     color: var(--heading-color);
+    opacity: 0;
 }
 .project-comments li {
     padding: 16px;
@@ -58,6 +60,12 @@
     margin-top: 20px;
     box-shadow: 3px 3px 5px rgba(0,0,0,0.05);
     background: #fff;
+    opacity: 0;
+}
+
+
+.project-comments .add-comment {
+    opacity: 0;
 }
 .comment-author {
     display: flex;

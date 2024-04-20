@@ -43,15 +43,19 @@ export default function Dashboard () {
         }
     }) : null
 
-    // useEffect(() => {
-    //     if(pathname === '/') {
-    //         anime({
-    //             targets: ['#dashboard-title', '.project-filter', '.project-list'],
-    //             opacity: 1,
-    //             delay: anime.stagger(100) ,
-    //         });
-    //     }
-    // },[pathname])
+    useEffect(() => {
+        if(pathname === '/') {
+            anime({
+                targets: [
+                    '#dashboard-title', 
+                    '.project-filter', 
+                    '.project-list a'
+                ],
+                opacity: 1,
+                delay: anime.stagger(100) ,
+            });
+        }
+    },[pathname, documents, currentFilter])
 
     return (
         <div>

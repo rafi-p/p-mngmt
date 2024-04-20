@@ -8,8 +8,9 @@ import { Fragment } from 'react'
 
 
 export default function OnlineUsers () {
-    const { error, documents } = useCollection('users')
+    const { error, documents } = useCollection('users', null, ['online', 'desc'])
     const { width } = useWindowSize()
+
     return (
         <div className='user-list'>
             <h2>All Users</h2>

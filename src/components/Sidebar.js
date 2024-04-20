@@ -20,7 +20,12 @@ export default function Sidebar({ hamburgerOpen, setHamburgerOpen }) {
     const { width } = useWindowSize()
 
     useEffect(() => {
-        if(hamburgerOpen) setHamburgerOpen(false)
+        if(hamburgerOpen) {
+            setHamburgerOpen(false)
+            document.body.style.overflow = 'hidden'
+        } 
+
+        document.body.style.overflow = ''
     }, [pathname])
 
     useEffect(() => {
@@ -49,11 +54,15 @@ export default function Sidebar({ hamburgerOpen, setHamburgerOpen }) {
     return (
         <div 
             ref={ref} 
-            className={`sidebar hamburger ${hamburgerOpen ? 'open' : ''}`} 
+            className={`
+                sidebar hamburger 
+
+            `} 
             style={
                 width <= 600 
                     ? {
-                        display: hamburgerOpen ? 'inline' : ''
+                        display: hamburgerOpen ? 'inline' : '',
+                        boxShadow: hamburgerOpen ? '0 0 0 10000px rgba(0,0,0,.50)' : ''
                     } 
                     : null
             }

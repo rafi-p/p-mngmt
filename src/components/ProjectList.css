@@ -3,7 +3,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     grid-gap: 20px;
-    /* opacity: 0; */
 }
 .project-list a {
     background-color: #fff;
@@ -12,6 +11,8 @@
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.05);
     text-decoration: none;
     color: inherit;
+    opacity: 0;
+
 }
 .project-list h4 {
     font-size: 0.9em;
