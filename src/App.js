@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { useAuthContext } from './hooks/useAuthContext'
 import useWindowSize from './hooks/useWindowSize'
-import anime from 'animejs'
+
 
 // styles
 import './App.css'
@@ -16,9 +16,11 @@ import Signup from './pages/signup/Signup'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 import OnlineUsers from './components/OnlineUsers'
+import OfflineNotification from './components/OfflineNotification'
 
 function App() {
   const [hamburgerOpen, setHamburgerOpen] = useState(false)
+  const [offline, setOffline] = useState(false)
   const { user, authIsReady } = useAuthContext()
   const { width } = useWindowSize()
 
@@ -31,6 +33,13 @@ function App() {
     } 
   }
 
+  useEffect(() => {
+    if(!navigator.onLine) {
+      setOffline(true)
+    }
+
+  }, [])
+
 
   return (
     <div className="App">
@@ -40,9 +49,16 @@ function App() {
           {
             user && <Sidebar hamburgerOpen={hamburgerOpen} setHamburgerOpen={setHamburgerOpen}/>
           }
-        { hamburgerOpen && <div className="overlay"></div>}
+          { 
+            hamburgerOpen && 
+              <div className="overlay"></div>
+          }
           <div className='container'>
             <Navbar  toggleHamburger={toggleHamburger}/>
+            {
+              offline && 
+                <OfflineNotification />
+            }
             <Switch>
               <Route exact path="/">
                 {
