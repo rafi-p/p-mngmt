@@ -1,10 +1,9 @@
 import { useCollection } from '../hooks/useCollection'
-import Avatar from '../components/Avatar'
+import BlurredImage from './BlurredImage'
 import useWindowSize from '../hooks/useWindowSize'
 
 // styles
 import './OnlineUsers.css'
-import { Fragment } from 'react'
 
 
 export default function OnlineUsers () {
@@ -33,12 +32,22 @@ export default function OnlineUsers () {
                                     <span>
                                         {user.displayName}
                                     </span>
-                                    <Avatar src={user.photoURL}/>
+                                    <BlurredImage 
+                                        imageUrl= {user?.photoURL} 
+                                        blurhash= {user?.hashIMG} 
+                                        width= {300} 
+                                        height= {300}
+                                    />
                                 </div>
                             )
                             : (
                                 <div key={user.id} className='user-list-item'>
-                                    <Avatar src={user.photoURL}/>
+                                    <BlurredImage 
+                                        imageUrl= {user?.photoURL} 
+                                        blurhash= {user?.hashIMG} 
+                                        width= {300} 
+                                        height= {300}
+                                    />
                                     <span>
                                         {user.displayName}
                                     </span>

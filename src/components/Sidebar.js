@@ -1,10 +1,9 @@
 import { NavLink, useLocation } from "react-router-dom"
-import Avatar from "./Avatar"
 import { useAuthContext } from "../hooks/useAuthContext"
 import useOutsideAlerter from "../hooks/useOutsideAlerter"
 import useWindowSize from "../hooks/useWindowSize"
 import anime from "animejs"
-
+import BlurredImage from "./BlurredImage"
 
 // styles & images
 import "./Sidebar.css"
@@ -69,7 +68,12 @@ export default function Sidebar({ hamburgerOpen, setHamburgerOpen }) {
         >
             <div className="sidebar-content">   
                 <div className="user">
-                    <Avatar src={user?.photoURL} />
+                    <BlurredImage 
+                        imageUrl= {user?.photoURL} 
+                        blurhash= {user?.hashIMG} 
+                        width= {300} 
+                        height= {300}
+                    />
                     <p>{user?.displayName}</p>
                 </div>
                 <nav className="links">

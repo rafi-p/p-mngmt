@@ -78,7 +78,8 @@ export default function Create () {
             return {
                 displayName: u.value.displayName,
                 photoURL: u.value.photoURL,
-                id: u.value.id
+                id: u.value.id,
+                hashIMG: u.value?.hashIMG ?? ''
             }
         })
 

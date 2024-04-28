@@ -1,5 +1,5 @@
 import { createContext, useReducer, useEffect } from 'react'
-import { projectAuth } from '../firebase/config'
+import { projectAuth, projectFirestore } from '../firebase/config'
 
 export const AuthContext = createContext()
 
@@ -23,8 +23,13 @@ export const AuthContextProvider = ({ children }) => {
   })
 
   useEffect(() => {
-    const unsub = projectAuth.onAuthStateChanged(user => {
-      dispatch({ type: 'AUTH_IS_READY', payload: user })
+    const unsub = projectAuth.onAuthStateChanged( async user => {
+
+      const uid = user.uid
+      const docByUid = projectFirestore.collection('users').doc(uid)
+      const storeUser = await (await docByUid.get()).data()
+
+      dispatch({ type: 'AUTH_IS_READY', payload: {...user, hashIMG: storeUser?.hashIMG} })
       unsub()
     })
   }, [])

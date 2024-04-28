@@ -1,4 +1,5 @@
-import Avatar from '../../components/Avatar'
+
+import BlurredImage from '../../components/BlurredImage'
 import { useFirestore } from '../../hooks/useFirestore'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { useHistory } from 'react-router-dom'
@@ -7,6 +8,8 @@ export default function ProjectSummary ({project}) {
     const { deleteDocument } = useFirestore('projects')
     const { user } = useAuthContext()
     const history = useHistory()
+
+    console.log(user)
 
     const handleClick = (e) => {
         deleteDocument(project.id)
@@ -29,7 +32,12 @@ export default function ProjectSummary ({project}) {
                     {
                         project.assignedUsersList.map(user => (
                             <div key={user.id}>
-                                <Avatar src={user.photoURL}/>
+                                <BlurredImage 
+                                    imageUrl= {user?.photoURL} 
+                                    blurhash= {user?.hashIMG} 
+                                    width= {300} 
+                                    height= {300}
+                                />
                             </div>
                         ))
                     }

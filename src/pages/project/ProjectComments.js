@@ -3,7 +3,7 @@ import { timestamp } from "../../firebase/config"
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { useFirestore } from "../../hooks/useFirestore"
 import formatDistanceToNow from "date-fns/formatDistanceToNow"
-import Avatar from "../../components/Avatar"
+import BlurredImage from "../../components/BlurredImage"
 
 export default function ProjectComments({project}) {
     const [newComment, setNewComment] = useState('')
@@ -18,7 +18,8 @@ export default function ProjectComments({project}) {
             photoURL: user.photoURL,
             content: newComment,
             createdAt: timestamp.fromDate(new Date()),
-            id: Math.random()
+            id: Math.random(),
+            hashIMG: user?.hashIMG ?? ''
         }
 
         await updateDocument(project.id, {
@@ -39,7 +40,12 @@ export default function ProjectComments({project}) {
                     project.comments.map(comment => (
                         <li key={comment.id}>
                             <div className="comment-author">
-                                <Avatar src={comment.photoURL} />
+                                <BlurredImage 
+                                    imageUrl= {comment?.photoURL} 
+                                    blurhash= {comment?.hashIMG} 
+                                    width= {300} 
+                                    height= {300}
+                                />
                                 <p>{comment.displayName}</p>
                             </div>
                             <div className="comment-date">
@@ -52,6 +58,7 @@ export default function ProjectComments({project}) {
                     ))
                 }
             </ul>
+            
 
             <form className="add-comment" onSubmit={handleSubmit}>
                 <label>

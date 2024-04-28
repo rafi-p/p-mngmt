@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom'
-import Avatar from '../components/Avatar'
+import BlurredImage from './BlurredImage'
 
 // styles
 import './ProjectList.css'
 
 export default function ProjectList({projects}) {
-
+    
     return (
         <div className='project-list'>
             {
@@ -21,7 +21,12 @@ export default function ProjectList({projects}) {
                                 {
                                     project.assignedUsersList.map(user => (
                                         <li key={user.photoURL}>
-                                            <Avatar src={user.photoURL}/>
+                                            <BlurredImage 
+                                                imageUrl= {user?.photoURL} 
+                                                blurhash= {user?.hashIMG} 
+                                                width= {300} 
+                                                height= {300}
+                                            />
                                         </li>
                                     ))
                                 }
