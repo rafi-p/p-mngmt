@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import { useLogin } from '../../hooks/useLogin'
+import usePageSEO from '../../hooks/usePageSEO'
 
 // styles
 import './Login.css'
@@ -13,6 +14,15 @@ export default function Login () {
         e.preventDefault()
         login(email, password)
     }
+
+    usePageSEO({
+        title: `The PM - Login`,
+        description: `The PM site login page. Login to access your projects, tasks, and team collaboration features.`,
+        keywords: ['login', 'project managements', 'tasks', 'collaboration', 'teamwork', 'issues', 'deadline'],
+        ogTitle: `The PM - Login`,
+        ogDescription: `The PM site login page. Login to access your projects, tasks, and team collaboration features.`,
+        ogImage: 'https://i.ibb.co/ZWHw8m7/logo512.png',
+    })
 
     return (
         <form 

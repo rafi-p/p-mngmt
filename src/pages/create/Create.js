@@ -6,6 +6,7 @@ import { useAuthContext } from '../../hooks/useAuthContext'
 import { useFirestore } from '../../hooks/useFirestore'
 import { useHistory, useLocation } from 'react-router-dom'
 import anime from 'animejs'
+import usePageSEO from '../../hooks/usePageSEO'
 
 // styles
 import './Create.css'
@@ -32,6 +33,15 @@ export default function Create () {
     const [category, setCategory] = useState('')
     const [assignedUsers, setAssignedUsers] = useState([])
     const [formError, setFormError] = useState(null)
+
+    usePageSEO({
+        title: 'The PM - Create',
+        description: `Optimize task management: Create, assign, and track project tasks, deadlines, and team assignments while efficiently addressing any arising issues.`,
+        keywords: ['project', 'create', 'form', 'dashboard', 'management', 'productivity', 'collaboration', 'tasks', 'track', 'progress', 'assign', 'users', 'category', 'due date', 'details', 'name', 'development', 'design', 'sales', 'marketing'],
+        ogTitle: 'The PM - Create',
+        ogDescription: `Optimize task management: Create, assign, and track project tasks, deadlines, and team assignments while efficiently addressing any arising issues.`,
+        ogImage: 'https://i.ibb.co/ZWHw8m7/logo512.png',
+    })
 
     useEffect(() => {
         if(documents) {

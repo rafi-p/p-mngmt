@@ -24,12 +24,15 @@ export const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     const unsub = projectAuth.onAuthStateChanged( async user => {
+      let payload = {...user}
+      if(user?.uid) {
+        const uid = user?.uid
+        const docByUid = projectFirestore.collection('users').doc(uid)
+        const storeUser = await (await docByUid.get()).data()
+        payload = { ...user, hashIMG: storeUser?.hashIMG }
+      }
 
-      const uid = user.uid
-      const docByUid = projectFirestore.collection('users').doc(uid)
-      const storeUser = await (await docByUid.get()).data()
-
-      dispatch({ type: 'AUTH_IS_READY', payload: {...user, hashIMG: storeUser?.hashIMG} })
+      dispatch({ type: 'AUTH_IS_READY', payload })
       unsub()
     })
   }, [])

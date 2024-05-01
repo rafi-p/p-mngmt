@@ -23,7 +23,7 @@ export default function Dashboard () {
         keywords: ['projects', 'dashboard', 'filters'],
         ogTitle: 'The PM - Dashboard',
         ogDescription: `Streamline project management with our intuitive dashboard. Track progress, assign tasks, and collaborate seamlessly for enhanced productivity.`,
-        ogImage: '',
+        ogImage: 'https://i.ibb.co/ZWHw8m7/logo512.png',
     })
 
     const { documents, error  } = useCollection('projects')
