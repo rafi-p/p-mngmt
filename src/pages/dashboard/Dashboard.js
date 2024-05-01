@@ -5,6 +5,7 @@ import ProjectFilter from './ProjectFilter'
 import { useState, useEffect } from 'react'
 import {useLocation} from 'react-router-dom'
 import anime from 'animejs'
+import usePageSEO from '../../hooks/usePageSEO'
 // styles
 import './Dashboard.css'
 
@@ -15,6 +16,16 @@ export default function Dashboard () {
         value: 'all',
         label: 'all'
     })
+
+    usePageSEO({
+        title: 'The PM - Dashboard',
+        description: `Streamline project management with our intuitive dashboard. Track progress, assign tasks, and collaborate seamlessly for enhanced productivity.`,
+        keywords: ['projects', 'dashboard', 'filters'],
+        ogTitle: 'The PM - Dashboard',
+        ogDescription: `Streamline project management with our intuitive dashboard. Track progress, assign tasks, and collaborate seamlessly for enhanced productivity.`,
+        ogImage: '',
+    })
+
     const { documents, error  } = useCollection('projects')
 
     const changeFilter = (newFilter) => {

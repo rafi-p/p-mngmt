@@ -1,0 +1,5 @@
+https://thepmsite-8c2c9.web.app/
+https://thepmsite-8c2c9.web.app/login
+https://thepmsite-8c2c9.web.app/signup
+https://thepmsite-8c2c9.web.app/create
+https://thepmsite-8c2c9.web.app/projects
