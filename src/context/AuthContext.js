@@ -24,7 +24,7 @@ export const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     const unsub = projectAuth.onAuthStateChanged( async user => {
-      let payload = {...user}
+      let payload = null
       if(user?.uid) {
         const uid = user?.uid
         const docByUid = projectFirestore.collection('users').doc(uid)
